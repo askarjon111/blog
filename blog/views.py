@@ -15,3 +15,8 @@ def home_view(request):
                                           'trending_posts': trending_posts,
                                           'popular_post': popular_post,
                                           'recent_posts': recent_posts})
+
+
+def posts_view(request):
+    posts = Post.objects.all().order_by('-created_at')
+    return render(request, 'posts.html', {'posts': posts})
