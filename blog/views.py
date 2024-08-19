@@ -10,6 +10,8 @@ def home_view(request):
     week_ago = date.today() - timedelta(days=7)
     popular_post = Post.objects.filter(
         created_at__gte=week_ago).order_by('-hit_count').last()
+    recent_posts = Post.objects.all()[:5]
     return render(request, 'index.html', {'editors_pick': editors_pick,
                                           'trending_posts': trending_posts,
-                                          'popular_post': popular_post})
+                                          'popular_post': popular_post,
+                                          'recent_posts': recent_posts})
